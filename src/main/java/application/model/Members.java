@@ -1,20 +1,42 @@
 package application.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Members {
 
     private long idUser;
-    private String userName;
     private String firstName;
     private String lastName;
-    private String emilAddress;
+    private String emailAddress;
+    private String userName;
     private String password;
     private LocalDateTime registryTime;
     private Access access;
 
+    private List<Blog> blogs;
 
     public Members() {
+    }
+
+    public Members(
+            long idUser,
+            String firstName,
+            String lastName,
+            String emailAdress,
+            String userName,
+            String password,
+            LocalDateTime registryTime,
+            Access access)
+    {
+        this.idUser = idUser;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAdress;
+        this.userName = userName;
+        this.password = password;
+        this.registryTime = registryTime;
+        this.access = access;
     }
 
     public long getIdUser() {
@@ -33,8 +55,8 @@ public class Members {
         return lastName;
     }
 
-    public String getEmilAddress() {
-        return emilAddress;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
     public String getPassword() {
@@ -47,5 +69,15 @@ public class Members {
 
     public Access getAccess() {
         return access;
+    }
+
+    public List<Blog> getBlogs() {
+        return blogs;
+    }
+
+    public String toString() {
+        return idUser + " - " +
+                userName + ", " +
+                access;
     }
 }
