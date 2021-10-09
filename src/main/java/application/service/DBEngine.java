@@ -133,6 +133,9 @@ public class DBEngine {
 
     public List<BlogSablon> listAllSablon() {
         String query = "SELECT * FROM blog_sablon";
+      /*  String query = new QueryBuilder()
+                .select(TableName.BLOG_SABLON)
+                .build();*/
 
         List<BlogSablon> sablonList = new ArrayList<>();
 
@@ -153,6 +156,7 @@ public class DBEngine {
                          style);
 
                 sablonList.add(blogSablon);
+                System.out.println(sablonList);
             }
         } catch (Exception e) {
             e.printStackTrace();

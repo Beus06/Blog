@@ -42,10 +42,10 @@ PRIMARY KEY(id_bs)
 CREATE TABLE IF NOT EXISTS members2blog (
 	id_mb INT UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
     id_us INT UNSIGNED NOT NULL,
-    id_blogs INT UNSIGNED NOT NULL,
+    id_bl INT UNSIGNED NOT NULL,
     PRIMARY KEY (id_mb),
     FOREIGN KEY (id_us) REFERENCES members(id_user), 
-    FOREIGN KEY (id_blogs) REFERENCES blog(id_blog)
+    FOREIGN KEY (id_bl) REFERENCES blog(id_blog)
 );
 
 CREATE TABLE IF NOT EXISTS comment2blog (
@@ -60,10 +60,10 @@ CREATE TABLE IF NOT EXISTS comment2blog (
 CREATE TABLE IF NOT EXISTS blog2blog_sablon (
 	id_bb INT UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
     id_sablon INT UNSIGNED NOT NULL,
-    id_blogs INT UNSIGNED NOT NULL,
+    id_bloges INT UNSIGNED NOT NULL,
     PRIMARY KEY (id_bb),
     FOREIGN KEY (id_sablon) REFERENCES blog_sablon(id_bs),
-    FOREIGN KEY (id_blogs) REFERENCES blog(id_blog)
+    FOREIGN KEY (id_bloges) REFERENCES blog(id_blog)
 );
 
 INSERT INTO members (first_name, last_name, e_mail, user_name, passw, registry, access) VALUES
