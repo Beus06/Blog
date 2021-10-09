@@ -10,13 +10,12 @@ public class Main {
 
         System.out.println(engine.isConnected());
 
-        if(engine.isConnected()) {
+        if (engine.isConnected()) {
 
             System.out.println();
         } else {
             System.out.println("no connection");
         }
-
 
         System.out.println("bla bla...");
     }
