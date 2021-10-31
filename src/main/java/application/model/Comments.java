@@ -2,7 +2,7 @@ package application.model;
 
 import java.time.LocalDateTime;
 
-public class Comment extends Blog{
+public class Comments extends Blog{
     /**
      * CREATE TABLE IF NOT EXISTS comment (
      * id_comment INT UNSIGNED NOT NULL UNIQUE AUTO_INCREMENT,
@@ -17,7 +17,7 @@ public class Comment extends Blog{
     private LocalDateTime commentTime;
 
 
-    public Comment(long idComment, String commentText, LocalDateTime commentTime) {
+    public Comments(long idComment, String commentText, LocalDateTime commentTime) {
         this.idComment = idComment;
         this.commentText = commentText;
         this.commentTime = commentTime;

@@ -1,10 +1,14 @@
 package application.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class Members {
 
+    @Id
     private long idUser;
     private String firstName;
     private String lastName;

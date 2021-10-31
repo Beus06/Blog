@@ -104,10 +104,10 @@ public class DBEngine {
         return blogList;
     }
 
-    public List<Comment> listAllComment() {
-        String query = "SELECT * FROM comment";
+    public List<Comments> listAllComment() {
+        String query = "SELECT * FROM comments";
 
-        List<Comment> commentList = new ArrayList<>();
+        List<Comments> commentList = new ArrayList<>();
 
         try {
             Statement statement = connection.createStatement();
@@ -118,7 +118,7 @@ public class DBEngine {
                 String commentText = resultSet.getString("comment");
                 LocalDateTime commentTime = resultSet.getTimestamp("comment_time").toLocalDateTime();
 
-                Comment comment = new Comment
+                Comments comment = new Comments
                         (idComment,
                          commentText,
                          commentTime);

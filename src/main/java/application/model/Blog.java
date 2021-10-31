@@ -1,28 +1,32 @@
 package application.model;
 
 import application.controller.BlogController;
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class Blog extends Members{
 
+    @Id
     private long idBlog;
     private long blogSerial;
     private String blogText;
+
+    @CreationTimestamp
     private LocalDateTime blogTime;
 
-    private List<Comment> comments;
-
-    BlogController blogController;
-    BlogSablon blogSablon;
+    @ManyToMany
+    private List<C omments> commentsList;
 
     public Blog() {
     }
-
-    public Blog(BlogSablon blogSablon){
-        this.blogSablon = blogSablon;
-    }
+    @
 
     public Blog(long idBlog, long blogSerial, String blogText, LocalDateTime blogTime) {
         this.idBlog = idBlog;
@@ -31,7 +35,6 @@ public class Blog extends Members{
         this.blogTime = blogTime;
 
     }
-
 
     public long getIdBlog() {
         return idBlog;
@@ -42,10 +45,8 @@ public class Blog extends Members{
     }
 
     public void setBlogText(String blogText) {
-        if (blogController.isModification() == true){
             this.blogText = blogText;
         }
-    }
 
     public String getBlogText() {
         return blogText;
@@ -55,9 +56,7 @@ public class Blog extends Members{
         return blogTime;
     }
 
-    public List<Comment> getComments() {
-        return comments;
-    }
+
 }
 
 

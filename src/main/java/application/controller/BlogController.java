@@ -3,30 +3,22 @@ package application.controller;
 
 import application.model.Blog;
 import application.model.Members;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
 public class BlogController {
-    /**
-     * blogbejegyzések olvasása
-     * nem kell hozzá jogosultság, sőt regisztráció sem
-     * blogbejegyzések módosítása
-     * admin, moderator; illetve a saját blogbejegyzéseit minden user módosíthatja
-     * blogbejegyzések törlése
-     * admin, moderator; illetve a saját blogbejegyzéseit minden user törölheti
-     */
-
-    private boolean read;
-    private boolean write;
-    private boolean modification = false;
-    private boolean delete = false;
 
     Members members;
     Blog blog;
     ControllerUtil controllerUtil;
 
-    public BlogController() {
+    public BlogController(Members members, Blog blog, ControllerUtil controllerUtil ) {
+        this.members = members;
+        this.blog = blog;
+        this.controllerUtil = controllerUtil;
     }
 
     /**
@@ -37,46 +29,14 @@ public class BlogController {
      */
 
     public List<Blog> blogByMember (List<Blog> blogList, long idUser) {
-        List <Blog> blogByUser = new ArrayList<>();
-
-        for ( int i = 0; i < blogList.size(); i++) {
-            if (blogList.get(i).getIdUser() == idUser) {
-                blogByUser.add(blogList.get(i));
-            }
-        }
-        return blogByUser;
+       //TODO
+        return null;
     }
 
     public List<Blog> allBlog (List<Blog> blogList, long blogSerial){
-
-        List<Blog> allBlog = new ArrayList<>();
-
-        for ( int i = 0; i < blogList.size(); i++) {
-            if (blogList.get(i).getBlogSerial() == blogSerial) {
-                allBlog.add(blogList.get(i));
-            }
-        }
-
-        return allBlog;
+        //TODO
+        return null;
     }
 
-    public boolean isRead() {
-        read = controllerUtil.isRead();
-        return read;
-    }
 
-    public boolean isWrite() {
-        write = controllerUtil.isWrite();
-        return write;
-    }
-
-    public boolean isModification() {
-        modification = controllerUtil.isModification();
-        return modification;
-    }
-
-    public boolean isDelete() {
-        delete = controllerUtil.isDelete();
-        return delete;
-    }
 }

@@ -1,8 +1,13 @@
 package application.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class BlogSablon {
 
-    private long idSablon;
+    @Id
+    private long sablonId;
     private String colour;
     private String alphabet;
     private String style;
@@ -10,8 +15,8 @@ public class BlogSablon {
     public BlogSablon() {
     }
 
-    public BlogSablon(long idSablon, String colour, String alphabet, String style) {
-        this.idSablon = idSablon;
+    public BlogSablon(long sablonId, String colour, String alphabet, String style) {
+        this.sablonId = sablonId;
         this.colour = colour;
         this.alphabet = alphabet;
         this.style = style;
