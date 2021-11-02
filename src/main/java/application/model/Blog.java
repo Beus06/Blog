@@ -1,14 +1,14 @@
 package application.model;
 
-import application.controller.BlogController;
+
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import java.time.LocalDateTime;
-import java.util.List;
+
+
 
 @Entity
 public class Blog extends Members{
@@ -21,12 +21,11 @@ public class Blog extends Members{
     @CreationTimestamp
     private LocalDateTime blogTime;
 
-    @ManyToMany
-    private List<C omments> commentsList;
+
+    //private List<Comments> commentsList;
 
     public Blog() {
     }
-    @
 
     public Blog(long idBlog, long blogSerial, String blogText, LocalDateTime blogTime) {
         this.idBlog = idBlog;

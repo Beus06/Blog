@@ -1,31 +1,32 @@
 package application.controller;
 
-import application.model.Blog;
+
 import application.model.Comments;
-import application.model.Members;
+import application.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
 public class CommentController {
 
-    Blog blog;
-    Members members;
-    ControllerUtil controllerUtil;
-    /**
-     * kommentek írása
-     * admin, moderator, user
-     */
-    //TODO
+  private CommentService commentService;
 
-    /**
-     * tartalmaz egy-egy metódust, amely teljesíti az alábbi feladatokat (egy feladat - egy metódus):
-     * visszaadja egy adott blogbejegyzéshez tartozó összes kommentet
-     */
+  @Autowired
+  public CommentController(CommentService commentService) {
+    this.commentService = commentService;
+  }
 
-    public List<Comments> commentByBlog (List<Blog> blogList, List<Comments> comments, long idBlog) {
-        //TODO
-        return null;
+  @GetMapping("/user")
+  public List<Comments> getCommentByBlog(
+          @PathVariable("byId") long idBlog) {
+    if (idBlog != 0) {
+      return commentService.getCommentByBlog(idBlog);
     }
+    return null;
+  }
 }

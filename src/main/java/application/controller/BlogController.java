@@ -2,41 +2,38 @@ package application.controller;
 
 
 import application.model.Blog;
-import application.model.Members;
+import application.service.BlogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @RestController
 public class BlogController {
 
-    Members members;
-    Blog blog;
-    ControllerUtil controllerUtil;
+    private BlogService blogService;
 
-    public BlogController(Members members, Blog blog, ControllerUtil controllerUtil ) {
-        this.members = members;
-        this.blog = blog;
-        this.controllerUtil = controllerUtil;
+    @Autowired
+    public BlogController(BlogService blogService) {
+        this.blogService = blogService;
     }
 
-    /**
-     * tartalmaz egy-egy metódust, amely teljesíti az alábbi feladatokat (egy feladat - egy metódus):
-     * visszaadja egy adott felhasználó összes blogját (ok)
-     * visszaadja egy adott blog összes blogbejegyzését (ok)
-     * @return
-     */
-
-    public List<Blog> blogByMember (List<Blog> blogList, long idUser) {
-       //TODO
+    @GetMapping("/users")
+    public List<Blog> getBlogByMember (@PathVariable("user") String userName){
+        if (userName != null) {
+            return blogService.getBlogByMember(userName);
+        }
         return null;
     }
 
-    public List<Blog> allBlog (List<Blog> blogList, long blogSerial){
-        //TODO
+    @GetMapping("/users")
+    public List<Blog> getBlogById(@PathVariable("byBlogId") long idBlog) {
+        if( idBlog != 0){
+            return blogService.getBlogById(idBlog);
+        }
         return null;
     }
-
-
 }

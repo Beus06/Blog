@@ -1,77 +1,57 @@
 package application.controller;
 
-import application.model.Access;
 import application.model.Members;
-import application.service.DBEngine;
+import application.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
+
+@RestController
 public class MembersController {
 
-    DBEngine dbEngine;
+    private MemberService service;
 
-    /**
-     * felhasználók adatainak olvasása
-     * csak admin, illetve a saját felhasználói adataihoz minden user hozzáfér
-     * felhasználók adatainak módosítása
-     * csak admin, illetve a saját felhasználói adatait minden user módosíthatja
-     */
-
-    private boolean readUser;
-    private boolean modificationUser;
-    private boolean deleteUser;
-
-    ControllerUtil controllerUtil;
-
-    public MembersController() {
+    @Autowired
+    public MembersController(MemberService service) {
+        this.service = service;
     }
 
-    /**
-     * tartalmaz egy-egy metódust, amely teljesíti az alábbi feladatokat (egy feladat - egy metódus):
-     * visszaadja adott szerepkörű felhasználók összes adatát (ok)
-     * visszaadja egy adott felhasználó összes adatát (ok)
-     * @return
-     */
-
-    public List<Members> memberByType (List<Members> membersList, Access access) {
-
-        List <Members> memberByType = new ArrayList<>();
-
-        for ( int i = 0; i < membersList.size(); i++) {
-            if (membersList.get(i).getAccess().equals(access)) {
-                memberByType.add(membersList.get(i));
-            }
-        }
-        return memberByType;
+    @GetMapping(value = {"/", "/home"})
+    public String getHello() {
+        return "hello";
     }
 
 
-    public List<Members> allDataForMember(List<Members> membersList, long idUser) {
+    @GetMapping("/user")
+    public Members getLoggedInUser() {
+        return service.getLoggedInUser();
+    }
 
-        List <Members> oneMember = new ArrayList<>();
+    @GetMapping("/users")
+    public List<Members> getAllUsers() {
+        return service.getAllUsers();
+    }
 
-        for ( int i = 0; i < membersList.size(); i++) {
-            if (membersList.get(i).getIdUser() == idUser) {
-                oneMember.add(membersList.get(i));
-                return oneMember;
-            }
+    @GetMapping(value = {"/users/", "/users/{username}"})
+    public Members getOneUser(
+            @PathVariable("username") String userName
+    ) {
+        if (userName != null) {
+            return service.getOneUser(userName);
         }
         return null;
     }
 
-    public boolean isReadUser() {
-        readUser = controllerUtil.isRead();
-        return readUser;
-    }
-
-    public boolean isModificationUser() {
-        modificationUser = controllerUtil.isModification();
-        return modificationUser;
-    }
-
-    public boolean isDeleteUser() {
-        deleteUser = controllerUtil.isDelete();
-        return deleteUser;
+    @GetMapping("/register")
+    public String registerUser() {
+        boolean registered = service.registerUsers();
+        if (registered) {
+            return "ok";
+        }
+        return "not ok";
     }
 }
