@@ -31,12 +31,12 @@ public class MembersController {
         return service.getLoggedInUser();
     }
 
-    @GetMapping("/users")
+    @GetMapping("/allUser")
     public List<Members> getAllUsers() {
         return service.getAllUsers();
     }
 
-    @GetMapping(value = {"/users/", "/users/{username}"})
+    @GetMapping(value = {"/myAccount/", "/myAccount/{username}"})
     public Members getOneUser(
             @PathVariable("username") String userName
     ) {

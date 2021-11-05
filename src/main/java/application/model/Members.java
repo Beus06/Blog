@@ -4,22 +4,19 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Component
 public class Members  implements UserDetails {
 
     @Id
+    @GeneratedValue
     private long idUser;
 
     private String firstName;
@@ -46,24 +43,40 @@ public class Members  implements UserDetails {
         this.access = access;
     }
 
-    public Members(
-            long idUser,
-            String firstName,
-            String lastName,
-            String emailAddress,
-            String userName,
-            String password,
-            LocalDateTime registryTime,
-            Access access)
-    {
+    public void setIdUser(long idUser) {
         this.idUser = idUser;
+    }
+
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setRegistryTime(LocalDateTime registryTime) {
         this.registryTime = registryTime;
+    }
+
+    public void setAccess(Access access) {
         this.access = access;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public long getIdUser() {

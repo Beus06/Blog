@@ -21,7 +21,7 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/myBlog")
     public List<Blog> getBlogByMember (@PathVariable("user") String userName){
         if (userName != null) {
             return blogService.getBlogByMember(userName);
@@ -29,7 +29,7 @@ public class BlogController {
         return null;
     }
 
-    @GetMapping("/users")
+    @GetMapping("/blog")
     public List<Blog> getBlogById(@PathVariable("byBlogId") long idBlog) {
         if( idBlog != 0){
             return blogService.getBlogById(idBlog);

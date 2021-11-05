@@ -1,19 +1,16 @@
 package application.model;
 
-
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
-
 @Entity
-public class Blog extends Members{
+public class Blog {
+
 
     @Id
+    @GeneratedValue
     private long idBlog;
     private long blogSerial;
     private String blogText;
@@ -21,11 +18,15 @@ public class Blog extends Members{
     @CreationTimestamp
     private LocalDateTime blogTime;
 
+    @ManyToOne
+    private Members owners;
+
 
     //private List<Comments> commentsList;
 
     public Blog() {
     }
+
 
     public Blog(long idBlog, long blogSerial, String blogText, LocalDateTime blogTime) {
         this.idBlog = idBlog;
@@ -55,6 +56,9 @@ public class Blog extends Members{
         return blogTime;
     }
 
+    public Members getOwners() {
+        return owners;
+    }
 
 }
 

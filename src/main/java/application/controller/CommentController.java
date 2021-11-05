@@ -21,7 +21,7 @@ public class CommentController {
     this.commentService = commentService;
   }
 
-  @GetMapping("/user")
+  @GetMapping("/allComment")
   public List<Comments> getCommentByBlog(
           @PathVariable("byId") long idBlog) {
     if (idBlog != 0) {
